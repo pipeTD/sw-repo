@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 '''
-
 Script name: lss
 Author: Mike Harris
 Date: 10/14/2016
@@ -22,14 +21,20 @@ import glob
 from operator import itemgetter
 from itertools import groupby
 
+def _print_usage():
+    print "Usage: lss <base path>\n\n\t<base path> : optional directory argument to list the contents\n"
+
 
 def _validate_basedir():
     ''' Validate user input '''
     base_dir = os.getcwd()
     args = sys.argv[1:]
+    if '-h' in args or '--help' in args:
+        _print_usage()
+        sys.exit()
     if args:
         if len(args) > 1:
-            print "Usage: lss <base path>\n\n\t<base path> : optional directory argument to list the contents\n"
+            _print_usage()
             sys.tracebacklimit = 0
             raise ValueError("Invalid argument(s) to lss command: %s" % " ".join(args[1:]))
         if not args[0].startswith('/'):
