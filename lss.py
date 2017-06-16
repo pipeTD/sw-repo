@@ -21,6 +21,7 @@ import glob
 from operator import itemgetter
 from itertools import groupby
 
+
 def _print_usage():
     print "Usage: lss <base path>\n\n\t<base path> : optional directory argument to list the contents\n"
 
@@ -49,14 +50,14 @@ def _validate_basedir():
 
 def _print_results(results):
     for key, value in results.items():
-        print len(value.get("file_names",[])), key, value.get("frame_list", "")
+        print len(value.get("file_names", [])), key, value.get("frame_list", "")
 
 
 def _string_replace(item, old_str, new_str, position=1):
     ''' Search item for old_str and replace with new_str at nth position '''
-    indicies = [i for i in range(len(item) - len(old_str)+1) if item[i:i+len(old_str)] == old_str]
+    indicies = [i for i in range(len(item) - len(old_str) + 1) if item[i:i + len(old_str)] == old_str]
     item = list(item)
-    item[indicies[position-1]:indicies[position-1]+len(old_str)] = new_str
+    item[indicies[position - 1]:indicies[position - 1] + len(old_str)] = new_str
     return ''.join(item)
 
 
@@ -64,7 +65,7 @@ def _get_number_ranges(num_list):
     ''' Format number ranges for a sequence of numbers '''
     ranges = list()
     num_list.sort()
-    for k, g in groupby(enumerate(num_list), lambda(i,x):i-x):
+    for k, g in groupby(enumerate(num_list), lambda(i, x): i - x):
         group = map(itemgetter(1), g)
         if len(group) > 1:
             ranges.append("%d-%d" % (int(group[0]), int(group[-1])))
@@ -88,7 +89,7 @@ def main():
         if not os.path.isfile(file_path):
             continue
         if re.search(pat_no_numbers, f_name):
-            results[f_name] = {"file_names" : [f_name]}
+            results[f_name] = {"file_names": [f_name]}
             continue
         numbers = re.findall(pat_numbers, f_name)
         for number in numbers:
@@ -98,7 +99,7 @@ def main():
             file_range = [os.path.basename(x) for x in glob.glob(mod_string)]
             if numbers.count(number) > 1:
                 for index in xrange(numbers.count(number)):
-                    mod_string = _string_replace(file_path, number, "*", position=index+1)
+                    mod_string = _string_replace(file_path, number, "*", position=index + 1)
                     file_range = [os.path.basename(x) for x in glob.glob(mod_string)]
                     if len(file_range) > 1:
                         break
@@ -108,8 +109,8 @@ def main():
                 sub_pat = "%d"
                 if len(number) > 1:
                     sub_pat = "%%0%dd" % int(len(number))
-                new_key = _string_replace(f_name, number, sub_pat, position=index+1)
-                if not new_key in results:
+                new_key = _string_replace(f_name, number, sub_pat, position=index + 1)
+                if new_key not in results:
                     results[new_key] = dict()
                     results[new_key]["file_names"] = list()
                 for item in file_range:
@@ -119,7 +120,7 @@ def main():
                         frame_list.append(int(item.replace(prefix, "").replace(suffix, "")))
                 break
         if single_file:
-            results[f_name] = {"file_names" : [f_name]}
+            results[f_name] = {"file_names": [f_name]}
         else:
             results[new_key]["frame_list"] = _get_number_ranges(frame_list)
 
