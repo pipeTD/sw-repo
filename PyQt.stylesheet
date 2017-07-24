@@ -1,4 +1,5 @@
 /*~~ http://doc.qt.io/qt-4.8/stylesheet-examples.html#style-sheet-usage ~~*/
+/*~~ http://doc.qt.io/qt-4.8/stylesheet-syntax.html ~~*/
 
 /* color palette
 Gnomon Green - #67C900 rgb(103,201,0)
@@ -19,7 +20,7 @@ Off-White - #B1B1B1 rgb(177,177,177)
 */
 
 /*~~ Top level ~~*/
-QWMainWindow {
+QMainWindow {
    background-color: #323232;
    color: #B1B1B1;
 }
