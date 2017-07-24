@@ -1,3 +1,5 @@
+/*~~ http://doc.qt.io/qt-4.8/stylesheet-examples.html#style-sheet-usage ~~*/
+
 /* color palette
 Gnomon Green - #67C900 rgb(103,201,0)
 Gnomon Olive - #819276 rgb(129,146,118)
@@ -16,6 +18,7 @@ White - #FFFFFF rgb(1,1,1)
 Off-White - #B1B1B1 rgb(177,177,177)
 */
 
+/*~~ Top level ~~*/
 QWMainWindow {
    background-color: #323232;
    color: #B1B1B1;
@@ -26,42 +29,7 @@ QWidget {
    color: #B1B1B1;
 }
 
-QListBox,
-QListWidget {
-   background-color: #515151;
-   color: #B1B1B1;
-}
-
-QListBox::item:selected,
-QListWidget::item:selected {
-    selection-background-color: #5285a6;
-}
-
-QLineEdit {
-   background-color: #515151;
-   color: #000000;
-}
-
-QLabel {
-   color: #B1B1B1;
-}
-
-QPushButton {
-   background-color: #515151;
-   color: #B1B1B1;
-   border-radius: 5px;
-   border-style: solid;
-   border-color: #000000;
-   height: 25px;
-   width: 100px;
-}
-
-QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #B1B1B1, stop: 1 #9D9D9D);
-    color: #000000;
-}
-
+/*~~ QCheckBox ~~*/
 QCheckBox::indicator {
     width: 14px;
     height: 14px;
@@ -78,10 +46,47 @@ QCheckBox::indicator:checked:pressed {
   border-color: #226666;
 }
 
-QStatusBar {
-    background-color: #515151;
+/*~~ QLabel ~~*/
+QLabel {
+   color: #B1B1B1;
 }
 
+/*~~ QLineEdit ~~*/
+QLineEdit {
+   background-color: #515151;
+   color: #000000;
+}
+
+/*~~ QListBox / QListBoxWidget ~~*/
+QListBox,
+QListWidget {
+   background-color: #515151;
+   color: #B1B1B1;
+}
+
+QListBox::item:selected,
+QListWidget::item:selected {
+    selection-background-color: #5285a6;
+}
+
+/*~~ QPushButton ~~*/
+QPushButton {
+   background-color: #515151;
+   color: #B1B1B1;
+   border-radius: 5px;
+   border-style: solid;
+   border-color: #000000;
+   height: 25px;
+   width: 100px;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #B1B1B1, stop: 1 #9D9D9D);
+    color: #000000;
+}
+
+/*~~ QRadioButton ~~*/
 QRadioButton {
   background-color: transparent;
   padding: 4px 8px;
@@ -104,6 +109,12 @@ QRadioButton::indicator:checked:pressed {
   border-color: #226666;
 }
 
+/*~~ QStatusBar ~~*/
+QStatusBar {
+    background-color: #515151;
+}
+
+/*~~ QTableWidget ~~*/
 QTableWidget {
     background-color: #515151;
 }
